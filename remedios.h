@@ -8,6 +8,12 @@ typedef int TIPOCHAVE;
 
 typedef struct {
 	TIPOCHAVE chave;
+	int codigo;
+	char nomeC[50];
+	char detentor[50];
+	char pais[50];
+	char validade[50];
+	int preco;
 } REGISTRO;
 
 typedef struct {
@@ -33,17 +39,16 @@ void inicializar(LISTA* lista) {
 	lista->A[MAX - 1].prox = INVALIDO;	
 }
 
-
 void exibir(LISTA* lista) {
 	int i = lista->inicio;
 	
-	printf("Lista de remédios: \" ");
+	printf("Remedios: ");
 	
 	while (i != INVALIDO) {
 		printf("%d ", lista->A[i].reg.chave);
 		i = lista->A[i].prox;
 	}
-	printf("\"\n");	
+	printf("\n");	
 }
 
 int tamanho(LISTA* lista) {
@@ -95,7 +100,7 @@ int excluir(LISTA* lista, TIPOCHAVE chave) {
 		lista->A[ant].prox = lista->A[i].prox;
 	}
 	devolverNo(lista, i);
-	return 90;
+	return 0;
 }
 
 void reinicializarLista(LISTA* lista) {
@@ -141,17 +146,36 @@ int inserir(LISTA* l, REGISTRO registro) {
 		l->A[ant].prox = i;	
 	}
 	
-	return 90;	
+	return 0;	
+}
+
+int carregar(LISTA* lista) {
+	FILE *farq = fopen("remedios.txt", "r");
+	
+	if (farq == NULL) {
+		return INVALIDO;
+	}
+	
+	int codigo;
+	char nomeC[50];
+	char detentor[50];
+	char pais[50];
+	char validade[50];
+	int preco;
+	
+	while (fscanf(farq, "%d %s %s %s %s %d", &codigo, &nomeC, &detentor, &pais, &validade, &preco) != EOF) {
+		printf("%d - %s - %s - %s - %s - %d \n", codigo, nomeC, detentor, pais, validade, preco);	
+	}
+	
+	fclose(farq);
+	return 0;
 }
 
 int main() {
-	LISTA l;
 	REGISTRO reg;
-	reg.chave = 9;
+	LISTA l;
 	inicializar(&l);
-	inserir(&l, reg);
+	reg.chave = 9;
+	
 	exibir(&l);
-	reg.chave = 10;
-	inserir(&l, reg);
-	exibir(&l);	
 }

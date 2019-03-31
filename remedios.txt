@@ -1,31 +1,31 @@
-8019 FOCTANE ADAPT VIGENTE 1                  
-8020 Linha BFND VIGENTE 87                  
-8021 Cyto BRAUN VIGENTE 12                  
-8022 ORTESE CHANTAL VIGENTE 66                  
-8019 Proteticos DENTSPLY VIGENTE 55                  
-8020 Medin DI VIGENTE 5                  
-8021 IHCom DiaMed VIGENTE 66                  
-8022 SISTEMA DIASORIN VIGENTE 3                  
-8019 A127 EMERGO VIGENTE 12                  
-8020 FIO EUROPA VIGENTE 67                  
-8021 Pilao FOCCUS VIGENTE 45                  
-8022 CANULA GUSMED VIGENTE 76                  
-8019 Uromed HTS VIGENTE 44                  
-8020 CODMAN JOHNSON VIGENTE 33                  
-8021 KARL KARL VIGENTE 34                  
-8022 MARTIN KLS VIGENTE 11                  
-8019 Diastream LABORATORIOS VIGENTE 98                  
-8020 Medtron MEDSTAR VIGENTE 2                  
-8021 BRACKETS MF VIGENTE 76                  
-8022 NES ORTOSPINE VIGENTE 56                  
-8019 STEMA PROSURGERY VIGENTE 7                  
-8020 LANCETADOR ROCHE VIGENTE 54                  
-8021 MOUNT SANOVIE VIGENTE 8                  
-8022 CHEYENNE smart VIGENTE 9                  
-8019 Estereis STRYKER VIGENTE 33                  
-8020 Tubavent SURGICAL VIGENTE 65                  
-8021 CANULA vasttor VIGENTE 89                  
-8022 CANULA vasttore VIGENTE 44                  
-8019 CURAPOR VR VIGENTE 90                  
-8020 Zepf WELFARE VIGENTE 4                  
-8021 Horico WILCOS VIGENTE 9                  
+8019 FOCTANE ADAPT ALEMANHA VIGENTE 1                  
+8020 Linha BFND BRASIL VIGENTE 87                  
+8021 Cyto BRAUN ARGENTINA VIGENTE 12                  
+8022 ORTESE CHANTAL USA VIGENTE 66                  
+8019 Proteticos DENTSPLY FRANCA VIGENTE 55                  
+8020 Medin DI ESPANHA VIGENTE 5                  
+8021 IHCom DiaMed ALEMANHA VIGENTE 66                  
+8022 SISTEMA DIASORIN ALEMANHA VIGENTE 3                  
+8019 A127 EMERGO ALEMANHA VIGENTE 12                  
+8020 FIO EUROPA CHILE VIGENTE 67                  
+8021 Pilao FOCCUS RUSSIA VIGENTE 45                  
+8022 CANULA GUSMED BRASIL VIGENTE 76                  
+8019 Uromed HTS ESPANHA VIGENTE 44                  
+8020 CODMAN JOHNSON ARGENTINA VIGENTE 33                  
+8021 KARL KARL ALEMANHA VIGENTE 34                  
+8022 MARTIN KLS ESPANHA VIGENTE 11                  
+8019 Diastream LABORATORIOS ALEMANHA VIGENTE 98                  
+8020 Medtron MEDSTAR ESPANHA VIGENTE 2                  
+8021 BRACKETS MF BRASIL VIGENTE 76                  
+8022 NES ORTOSPINE ALEMANHA VIGENTE 56                  
+8019 STEMA PROSURGERY ARGENTINA VIGENTE 7                  
+8020 LANCETADOR ROCHE ESPANHA VIGENTE 54                  
+8021 MOUNT SANOVIE ALEMANHA VIGENTE 8                  
+8022 CHEYENNE smart BRASIL VIGENTE 9                  
+8019 Estereis STRYKER ESPANHA VIGENTE 33                  
+8020 Tubavent SURGICAL BRASIL VIGENTE 65                  
+8021 CANULA vasttor ALEMANHA VIGENTE 89                  
+8022 CANULA vasttore BRASIL VIGENTE 44                  
+8019 CURAPOR VR ALEMANHA VIGENTE 90                  
+8020 Zepf WELFARE ARGENTINA VIGENTE 4                  
+8021 Horico WILCOS ALEMANHA VIGENTE 9                  

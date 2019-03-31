@@ -33,14 +33,11 @@ void inicializar(LISTA* lista) {
 	lista->A[MAX - 1].prox = INVALIDO;	
 }
 
-bool carregar(LISTA*) {
-	
-}
 
 void exibir(LISTA* lista) {
 	int i = lista->inicio;
 	
-	printf("Lista de remédios: ");
+	printf("Lista de remédios: \" ");
 	
 	while (i != INVALIDO) {
 		printf("%d ", lista->A[i].reg.chave);
@@ -75,11 +72,11 @@ int buscar(LISTA* lista, TIPOCHAVE chave) {
 }
 
 void devolverNo(LISTA* lista, int j) {
-	lista->A[i].prox = lista->dispo;
+	lista->A[j].prox = lista->dispo;
 	lista->dispo = j;
 }
 
-bool excluir(LISTA* lista, TIPOCHAVE chave) {
+int excluir(LISTA* lista, TIPOCHAVE chave) {
 	int ant = INVALIDO;
 	int i = lista->inicio;
 	
@@ -89,7 +86,7 @@ bool excluir(LISTA* lista, TIPOCHAVE chave) {
 	}
 	
 	if (i == INVALIDO || lista->A[i].reg.chave != chave) {
-		return false;
+		return INVALIDO;
 	}
 	
 	if (ant = INVALIDO) {
@@ -97,7 +94,8 @@ bool excluir(LISTA* lista, TIPOCHAVE chave) {
 	} else {
 		lista->A[ant].prox = lista->A[i].prox;
 	}
-	return true;
+	devolverNo(lista, i);
+	return 90;
 }
 
 void reinicializarLista(LISTA* lista) {
@@ -114,26 +112,26 @@ int obterNo(LISTA* lista) {
 	return resultado;
 }
 
-bool inserir(LISTA* l, REGISTRO registro) {
+int inserir(LISTA* l, REGISTRO registro) {
 	if (l->dispo == INVALIDO) {
-		return false;
+		return INVALIDO;
 	}
 	
 	int ant = INVALIDO;
 	int i = l->inicio;
 	TIPOCHAVE chave = registro.chave;
 	
-	while ((i != INVALIDO) && (l->A[i].reg < chave)) {
+	while ((i != INVALIDO) && (l->A[i].reg.chave < chave)) {
 		ant = i;
 		i = l->A[i].prox;
 	}
 	
 	if (i != INVALIDO && l->A[i].reg.chave == chave) {
-		return false;
+		return INVALIDO;
 	}
 	
 	i = obterNo(l);
-	l->A[i].reg = reg;
+	l->A[i].reg = registro;
 	
 	if (ant == INVALIDO) {
 		l->A[i].prox = l->inicio;
@@ -143,7 +141,7 @@ bool inserir(LISTA* l, REGISTRO registro) {
 		l->A[ant].prox = i;	
 	}
 	
-	return true;	
+	return 90;	
 }
 
 int main() {
@@ -151,5 +149,9 @@ int main() {
 	REGISTRO reg;
 	reg.chave = 9;
 	inicializar(&l);
+	inserir(&l, reg);
+	exibir(&l);
+	reg.chave = 10;
+	inserir(&l, reg);
 	exibir(&l);	
 }

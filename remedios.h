@@ -121,7 +121,9 @@ int inserir(LISTA* l, REGISTRO registro) {
 	if (l->dispo == INVALIDO) {
 		return INVALIDO;
 	}
-	
+	if(buscar(&l,registro.chave) != INVALIDO){
+		return INVALIDO;
+	}
 	int ant = INVALIDO;
 	int i = l->inicio;
 	TIPOCHAVE chave = registro.chave;
@@ -165,6 +167,16 @@ int carregar(LISTA* lista) {
 	
 	while (fscanf(farq, "%d %s %s %s %s %d", &codigo, &nomeC, &detentor, &pais, &validade, &preco) != EOF) {
 		printf("%d - %s - %s - %s - %s - %d \n", codigo, nomeC, detentor, pais, validade, preco);	
+		
+		REGISTRO registro;
+    	registro.chave = ++id;
+   	 	registro.codigo = codigo;
+    	registro.detentor[50] = detentor[50];
+   	 	registro.nome_comercial[50] = nome[50];
+    	registro.preco = preco;
+    	registro.validade[50] = validade[50];
+    	
+    	inserir(&lista,registro);
 	}
 	
 	fclose(farq);
@@ -175,6 +187,7 @@ int main() {
 	REGISTRO reg;
 	LISTA l;
 	inicializar(&l);
+	carregar(&l)
 	reg.chave = 9;
 	
 	exibir(&l);

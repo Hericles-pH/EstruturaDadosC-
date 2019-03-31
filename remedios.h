@@ -61,19 +61,74 @@ int tamanho(LISTA* lista) {
 }
 
 int buscar(LISTA* lista, TIPOCHAVE chave) {
+	int i = lista->inicio;
 	
+	while (i != INVALIDO && lista->A[i].reg.chave < chave) {
+		i = lista->A[i].prox;
+	}
+	
+	if (i != INVALIDO && lista->A[i].reg.chave == chave) {
+		return i;
+	} else {
+		return INVALIDO;
+	}
+}
+
+void devolverNo(LISTA* lista, int j) {
+	lista->A[i].prox = lista->dispo;
+	lista->dispo = j;
 }
 
 bool excluir(LISTA* lista, TIPOCHAVE chave) {
-
+	int ant = INVALIDO;
+	int i = lista->inicio;
+	
+	while ((i == INVALIDO) && (lista->A[i].reg.chave < chave)) {
+		ant = i;
+		i = lista->A[i].prox;
+	}
+	
+	if (i == INVALIDO || lista->A[i].reg.chave != chave) {
+		return false;
+	}
+	
+	if (ant = INVALIDO) {
+		lista->inicio = lista->A[i].prox;
+	} else {
+		lista->A[ant].prox = lista->A[i].prox;
+	}
+	return true;
 }
 
 void reinicializarLista(LISTA* lista) {
+	inicializar(lista);	
+}
+
+int obterNo(LISTA* lista) {
+	int resultado = lista->dispo;
 	
+	if (lista->dispo != INVALIDO) {
+		lista->dispo = lista->A[lista->dispo].prox;
+	}
+	
+	return resultado;
 }
 
 bool inserir(LISTA* l, REGISTRO registro) {
+	if (l->dispo == INVALIDO) {
+		return false;
+	}
 	
+	int ant = INVALIDO;
+	int i = l->inicio;
+	TIPOCHAVE chave = registro.chave;
+	
+	while ((i != INVALIDO) && (l->A[i].reg < chave)) {
+		ant = i;
+		i = l->A[i].prox;
+	}
+	
+	if
 }
 
 int main() {

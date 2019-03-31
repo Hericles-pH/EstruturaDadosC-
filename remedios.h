@@ -128,7 +128,22 @@ bool inserir(LISTA* l, REGISTRO registro) {
 		i = l->A[i].prox;
 	}
 	
-	if
+	if (i != INVALIDO && l->A[i].reg.chave == chave) {
+		return false;
+	}
+	
+	i = obterNo(l);
+	l->A[i].reg = reg;
+	
+	if (ant == INVALIDO) {
+		l->A[i].prox = l->inicio;
+		l->inicio = i;
+	} else {
+		l->A[i].prox = l->A[ant].prox;
+		l->A[ant].prox = i;	
+	}
+	
+	return true;	
 }
 
 int main() {

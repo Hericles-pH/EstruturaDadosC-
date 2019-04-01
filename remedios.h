@@ -157,7 +157,7 @@ int carregar(LISTA* lista) {
 	if (farq == NULL) {
 		return INVALIDO;
 	}
-	int id;
+
 	int codigo;
 	char nomeC[50];
 	char detentor[50];
@@ -169,14 +169,14 @@ int carregar(LISTA* lista) {
 		printf("%d - %s - %s - %s - %s - %d \n", codigo, nomeC, detentor, pais, validade, preco);	
 		
 		REGISTRO registro;
-    	registro.chave = ++id;
+    	
    	 	registro.codigo = codigo;
     	registro.detentor[50] = detentor[50];
    	 	registro.nomeC[50] = nomeC[50];
     	registro.preco = preco;
     	registro.validade[50] = validade[50];
     	
-    	inserir(&lista,registro);
+    	inserir(lista,registro);
 	}
 	
 	fclose(farq);

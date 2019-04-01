@@ -121,7 +121,7 @@ int inserir(LISTA* l, REGISTRO registro) {
 	if (l->dispo == INVALIDO) {
 		return INVALIDO;
 	}
-	if(buscar(&l,registro.chave) != INVALIDO){
+	if(buscar(l,registro.chave) != INVALIDO){
 		return INVALIDO;
 	}
 	int ant = INVALIDO;
@@ -157,7 +157,7 @@ int carregar(LISTA* lista) {
 	if (farq == NULL) {
 		return INVALIDO;
 	}
-	
+	int id;
 	int codigo;
 	char nomeC[50];
 	char detentor[50];
@@ -172,7 +172,7 @@ int carregar(LISTA* lista) {
     	registro.chave = ++id;
    	 	registro.codigo = codigo;
     	registro.detentor[50] = detentor[50];
-   	 	registro.nome_comercial[50] = nome[50];
+   	 	registro.nomeC[50] = nomeC[50];
     	registro.preco = preco;
     	registro.validade[50] = validade[50];
     	

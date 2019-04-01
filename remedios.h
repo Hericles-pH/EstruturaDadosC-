@@ -187,7 +187,7 @@ int main() {
 	REGISTRO reg;
 	LISTA l;
 	inicializar(&l);
-	carregar(&l)
+	carregar(&l);
 	reg.chave = 9;
 	
 	exibir(&l);

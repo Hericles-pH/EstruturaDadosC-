@@ -45,7 +45,9 @@ void exibir(LISTA* lista) {
 	printf("Remedios: ");
 	
 	while (i != INVALIDO) {
-		printf("%d ", lista->A[i].reg.chave);
+		printf("%d ", lista->A[i].reg.codigo);
+		printf("%s ", lista->A[i].reg.nomeC[50]);
+		printf("%s ", lista->A[i].reg.detentor[50]);
 		i = lista->A[i].prox;
 	}
 	printf("\n");	
@@ -117,38 +119,45 @@ int obterNo(LISTA* lista) {
 	return resultado;
 }
 
+int buscaSeq(TIPOCHAVE ch, LISTA* lista, int *ant){
+  	*ant = INVALIDO;
+  	int i = lista->inicio;
+  	
+	while ((i != INVALIDO) && (lista->A[i].reg.chave < ch)) {
+    	*ant = i;
+    	i = lista->A[i].prox;
+  	}
+  	
+	if ((i != INVALIDO) && (lista->A[i].reg.chave == ch)) {
+		return i;
+	}
+  	return INVALIDO;
+}
+
 int inserir(LISTA* l, REGISTRO registro) {
 	if (l->dispo == INVALIDO) {
 		return INVALIDO;
 	}
-	if(buscar(l,registro.chave) != INVALIDO){
-		return INVALIDO;
-	}
-	int ant = INVALIDO;
-	int i = l->inicio;
-	TIPOCHAVE chave = registro.chave;
 	
-	while ((i != INVALIDO) && (l->A[i].reg.chave < chave)) {
-		ant = i;
-		i = l->A[i].prox;
-	}
-	
-	if (i != INVALIDO && l->A[i].reg.chave == chave) {
-		return INVALIDO;
-	}
-	
+	int ant, i;
+    
+	i = buscaSeq(registro.chave, l, &ant);
+    
+	if (i != INVALIDO) {
+		return INVALIDO;	
+	} 
+    
 	i = obterNo(l);
-	l->A[i].reg = registro;
-	
-	if (ant == INVALIDO) {
-		l->A[i].prox = l->inicio;
-		l->inicio = i;
-	} else {
-		l->A[i].prox = l->A[ant].prox;
-		l->A[ant].prox = i;	
-	}
-	
-	return 0;	
+    l->A[i].reg = registro;
+    
+	if (ant == INVALIDO) { 
+        l->A[i].prox = l->inicio;
+        l->inicio = i;
+    } else {  
+        l->A[i].prox = l->A[ant].prox;
+        l->A[ant].prox = i;
+    }  
+    return 0;	
 }
 
 int carregar(LISTA* lista) {
@@ -171,12 +180,13 @@ int carregar(LISTA* lista) {
 		REGISTRO registro;
     	
    	 	registro.codigo = codigo;
-    	registro.detentor[50] = detentor[50];
-   	 	registro.nomeC[50] = nomeC[50];
-    	registro.preco = preco;
+    	registro.nomeC[50] = nomeC[50];
+		registro.detentor[50] = detentor[50];
+   	 	registro.pais[50] = pais[50];
     	registro.validade[50] = validade[50];
+		registro.preco = preco;
     	
-    	inserir(lista,registro);
+    	inserir(lista, registro);
 	}
 	
 	fclose(farq);
@@ -187,8 +197,6 @@ int main() {
 	REGISTRO reg;
 	LISTA l;
 	inicializar(&l);
-	carregar(&l);
-	reg.chave = 9;
 	
 	exibir(&l);
 }

@@ -45,9 +45,13 @@ void exibir(LISTA* lista) {
 	printf("Remedios: ");
 	
 	while (i != INVALIDO) {
+		printf("\n");
 		printf("%d ", lista->A[i].reg.codigo);
-		printf("%s ", lista->A[i].reg.nomeC[50]);
-		printf("%s ", lista->A[i].reg.detentor[50]);
+		printf("%s ", lista->A[i].reg.nomeC);
+		printf("%s ", lista->A[i].reg.detentor);
+		printf("%s ", lista->A[i].reg.pais);
+		printf("%s ", lista->A[i].reg.validade);
+		printf("%d ", lista->A[i].reg.preco);
 		i = lista->A[i].prox;
 	}
 	printf("\n");	
@@ -76,6 +80,7 @@ int buscar(LISTA* lista, TIPOCHAVE chave) {
 	} else {
 		return INVALIDO;
 	}
+	return 1;
 }
 
 void devolverNo(LISTA* lista, int j) {
@@ -135,6 +140,7 @@ int buscaSeq(TIPOCHAVE ch, LISTA* lista, int *ant){
 }
 
 int inserir(LISTA* l, REGISTRO registro) {
+	registro.chave = registro.codigo;
 	if (l->dispo == INVALIDO) {
 		return INVALIDO;
 	}
@@ -174,29 +180,67 @@ int carregar(LISTA* lista) {
 	char validade[50];
 	int preco;
 	
-	while (fscanf(farq, "%d %s %s %s %s %d", &codigo, &nomeC, &detentor, &pais, &validade, &preco) != EOF) {
-		printf("%d - %s - %s - %s - %s - %d \n", codigo, nomeC, detentor, pais, validade, preco);	
-		
-		REGISTRO registro;
-    	
-   	 	registro.codigo = codigo;
-    	registro.nomeC[50] = nomeC[50];
-		registro.detentor[50] = detentor[50];
-   	 	registro.pais[50] = pais[50];
-    	registro.validade[50] = validade[50];
-		registro.preco = preco;
-    	
-    	inserir(lista, registro);
+	inicializar(lista);
+	
+	while (fscanf(farq, "%d %s %s %s %s %d", &codigo, &nomeC, &detentor, &pais, &validade, &preco) != EOF) {	
+	
+	REGISTRO registro;
+	registro.codigo = codigo;
+	int i = 0;
+	for (i; i < sizeof(registro.nomeC); i++) {
+		registro.nomeC[i] = nomeC[i];	
 	}
+	i = 0;
+	for (i; i < sizeof(registro.detentor); i++) {
+		registro.detentor[i] = detentor[i];	
+	}
+	i = 0;
+	for (i; i < sizeof(registro.nomeC); i++) {
+		registro.pais[i] = pais[i];	
+	}
+	i = 0;
+	for (i; i < sizeof(registro.validade); i++) {
+		registro.validade[i] = validade[i];	
+	}
+	i = 0;
+	registro.preco = preco;
+	
+	inserir(lista, registro);
+	
+	}
+	
+	exibir(lista);
 	
 	fclose(farq);
 	return 0;
 }
 
-int main() {
-	REGISTRO reg;
-	LISTA l;
-	inicializar(&l);
+void cadastroManual(LISTA* lista) {
+	REGISTRO registro;
+	printf("\n\n\nBEM VINDO AO CADASTRO\n");
+	printf("Digite o codigo do rememdio: \n");
+	scanf("%d", &registro.codigo);
+	printf("Digite o nome comercial do remedio: \n");
+	scanf("%s", &registro.nomeC);
+	printf("Digite o detentor do remedio: \n");
+	scanf("%s", &registro.detentor);
+	printf("Digite a validade do remedio: \n");
+	scanf("%s", &registro.validade);
+	printf("Digite o pais do remedio: \n");
+	scanf("%s", &registro.pais);
+	printf("Digite o preco do remedio: \n");
+	scanf("%d", &registro.preco);
 	
-	exibir(&l);
+	inserir(lista, registro);
 }
+
+int main(){
+	LISTA lista;
+	inicializar(&lista);
+	carregar(&lista);
+	cadastroManual(&lista);
+	exibir(&lista);
+}
+
+
+

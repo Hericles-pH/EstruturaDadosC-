@@ -217,8 +217,8 @@ int carregar(LISTA* lista) {
 
 void cadastroManual(LISTA* lista) {
 	REGISTRO registro;
-	printf("\n\n\nBEM VINDO AO CADASTRO\n");
-	printf("Digite o codigo do rememdio: \n");
+	printf("\n\nBEM VINDO AO CADASTRO\n");
+	printf("Digite o codigo do remedio: \n");
 	scanf("%d", &registro.codigo);
 	printf("Digite o nome comercial do remedio: \n");
 	scanf("%s", &registro.nomeC);
@@ -230,16 +230,24 @@ void cadastroManual(LISTA* lista) {
 	scanf("%s", &registro.pais);
 	printf("Digite o preco do remedio: \n");
 	scanf("%d", &registro.preco);
+	printf("\n");
 	
 	inserir(lista, registro);
 }
 
-int main(){
+int main() {
 	LISTA lista;
-	inicializar(&lista);
+	int con = 1;
 	carregar(&lista);
-	cadastroManual(&lista);
-	exibir(&lista);
+	
+	while (con == 1) {
+		cadastroManual(&lista);
+		exibir(&lista);
+		printf("\n[1] Cadastrar mais remedios\n");
+		printf("[2] Sair\n");
+		scanf("%d", &con);
+		printf("\n");
+	}	
 }
 
 

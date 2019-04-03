@@ -282,6 +282,8 @@ int main() {
 			break;
 			case 5: 
 				reinicializarLista(&lista);
+				printf("\n\n");
+				carregar(&lista);
 				printf("\n");
 			break;
 			default:

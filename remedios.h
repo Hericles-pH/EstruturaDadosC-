@@ -42,7 +42,7 @@ void inicializar(LISTA* lista) {
 void exibir(LISTA* lista) {
 	int i = lista->inicio;
 	
-	printf("Remedios carregados: ");
+	printf("Remedios carregado(s): ");
 	
 	while (i != INVALIDO) {
 		printf("\n");
@@ -65,9 +65,8 @@ int tamanho(LISTA* lista) {
 		tam++;
 		i = lista->A[i].prox;
 	}
-	printf("%d", tam);
-	return tam;
-		
+	printf("A lista contem exatamente: [%d] remedio(s).", tam);
+	return tam;		
 }
 
 int buscar(LISTA* lista, TIPOCHAVE chave) {
@@ -78,8 +77,10 @@ int buscar(LISTA* lista, TIPOCHAVE chave) {
 	}
 	
 	if (i != INVALIDO && lista->A[i].reg.chave == chave) {
+		printf("\nEste remedio se encontra na posicao [%d] da lista.", i);
 		return i;
 	} else {
+		printf("\nCodigo invalido!", i);
 		return INVALIDO;
 	}
 	return 1;
@@ -114,7 +115,8 @@ int excluir(LISTA* lista, TIPOCHAVE chave) {
 }
 
 void reinicializarLista(LISTA* lista) {
-	inicializar(lista);	
+	inicializar(lista);
+	printf("Lista reinicializada com sucesso!");	
 }
 
 int obterNo(LISTA* lista) {
@@ -243,11 +245,14 @@ int main() {
 	int con = 0;
 	carregar(&lista);
 	
-	while (con != 3) {
-		printf("\n\n**** BEM VINDO A NOSSA FARMACIA ****");
-		printf("\n[1] Cadastrar remedios\n");
-		printf("[2] Excluir remedios\n");
-		printf("[3] Sair\n");
+	while (con != 6) {
+		printf("\n**** BEM VINDO A NOSSA FARMACIA ****");
+		printf("\n[1] Cadastrar remedio(s)\n");
+		printf("[2] Excluir remedio(s)\n");
+		printf("[3] Mostrar tamanho da lista\n");
+		printf("[4] Buscar posicao de um remedio\n");
+		printf("[5] Reinicializar a lista\n");
+		printf("[6] Sair\n");
 		scanf("%d", &con);
 		printf("\n");
 	
@@ -260,12 +265,27 @@ int main() {
 				exibir(&lista);
 				printf("\nEscolha o codigo do remedio que voce deseja excluir: \n");
 				scanf("%d", &reg.chave);
-				excluir(&lista, reg.chave);
 				printf("\n");
+				excluir(&lista, reg.chave);
 				exibir(&lista);
+				printf("\n");
+			break;
+			case 3: 
+				tamanho(&lista);
+				printf("\n");
+			break;
+			case 4: 
+				printf("Digite o codigo do remedio que voce deseja pesquisar: \n");
+				scanf("%d", &reg.chave);
+				buscar(&lista, reg.chave);
+				printf("\n");
+			break;
+			case 5: 
+				reinicializarLista(&lista);
+				printf("\n");
 			break;
 			default:
-				con = 3;	
+				con = 6;	
 			break;
 		}
 	}	

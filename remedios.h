@@ -42,7 +42,7 @@ void inicializar(LISTA* lista) {
 void exibir(LISTA* lista) {
 	int i = lista->inicio;
 	
-	printf("Remedios: ");
+	printf("Remedios carregados: ");
 	
 	while (i != INVALIDO) {
 		printf("\n");
@@ -107,6 +107,7 @@ int excluir(LISTA* lista, TIPOCHAVE chave) {
 		lista->A[ant].prox = lista->A[i].prox;
 	}
 	devolverNo(lista, i);
+	
 	return 0;
 }
 
@@ -217,7 +218,7 @@ int carregar(LISTA* lista) {
 
 void cadastroManual(LISTA* lista) {
 	REGISTRO registro;
-	printf("\n\nBEM VINDO AO CADASTRO\n");
+	printf("\n**** BEM VINDO AO CADASTRO ****\n");
 	printf("Digite o codigo do remedio: \n");
 	scanf("%d", &registro.codigo);
 	printf("Digite o nome comercial do remedio: \n");
@@ -237,16 +238,36 @@ void cadastroManual(LISTA* lista) {
 
 int main() {
 	LISTA lista;
-	int con = 1;
+	REGISTRO reg;
+	int con = 0;
 	carregar(&lista);
 	
-	while (con == 1) {
-		cadastroManual(&lista);
-		exibir(&lista);
-		printf("\n[1] Cadastrar mais remedios\n");
-		printf("[2] Sair\n");
+	while (con != 3) {
+		printf("\n\n**** BEM VINDO A NOSSA FARMACIA ****");
+		printf("\n[1] Cadastrar remedios\n");
+		printf("[2] Excluir remedios\n");
+		printf("[3] Sair\n");
 		scanf("%d", &con);
 		printf("\n");
+	
+		switch (con) {
+			case 1: 
+				cadastroManual(&lista);
+				exibir(&lista);
+			break;
+			case 2: 
+				exibir(&lista);
+				printf("\nEscolha o codigo do remedio que voce deseja excluir: \n");
+				scanf("%d", &reg.codigo);
+				reg.chave = reg.codigo;
+				excluir(&lista, reg.chave);
+				printf("\n");
+				exibir(&lista);
+			break;
+			default:
+				con = 3;	
+			break;
+	}
 	}	
 }
 

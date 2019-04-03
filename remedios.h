@@ -65,7 +65,9 @@ int tamanho(LISTA* lista) {
 		tam++;
 		i = lista->A[i].prox;
 	}
-	return tam;	
+	printf("%d", tam);
+	return tam;
+		
 }
 
 int buscar(LISTA* lista, TIPOCHAVE chave) {
@@ -92,7 +94,7 @@ int excluir(LISTA* lista, TIPOCHAVE chave) {
 	int ant = INVALIDO;
 	int i = lista->inicio;
 	
-	while ((i == INVALIDO) && (lista->A[i].reg.chave < chave)) {
+	while ((i != INVALIDO) && (lista->A[i].reg.chave < chave)) {
 		ant = i;
 		i = lista->A[i].prox;
 	}
@@ -101,7 +103,7 @@ int excluir(LISTA* lista, TIPOCHAVE chave) {
 		return INVALIDO;
 	}
 	
-	if (ant = INVALIDO) {
+	if (ant == INVALIDO) {
 		lista->inicio = lista->A[i].prox;
 	} else {
 		lista->A[ant].prox = lista->A[i].prox;
@@ -209,7 +211,6 @@ int carregar(LISTA* lista) {
 	inserir(lista, registro);
 	
 	}
-	
 	exibir(lista);
 	
 	fclose(farq);
@@ -258,8 +259,7 @@ int main() {
 			case 2: 
 				exibir(&lista);
 				printf("\nEscolha o codigo do remedio que voce deseja excluir: \n");
-				scanf("%d", &reg.codigo);
-				reg.chave = reg.codigo;
+				scanf("%d", &reg.chave);
 				excluir(&lista, reg.chave);
 				printf("\n");
 				exibir(&lista);
@@ -267,7 +267,7 @@ int main() {
 			default:
 				con = 3;	
 			break;
-	}
+		}
 	}	
 }
 
